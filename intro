@@ -19,5 +19,5 @@ Nested Routes
   -> lets say mene pages ke andar ek folder banya called user and mene uske andar ek page satwik.js banaya then it will be "/usr/satwik";
   -> lets say agar hum user pe jaaye aur vha pe mujhe kuch render karna h
 
-Dynamic Routes
+
   
