@@ -1,0 +1,77 @@
+
+Next Router
+
+
+let's make a button that when a user clicks it redirects him to a settings page
+there are many ways 
+1 way -> 
+
+import {useRouter} from "next/router";
+
+const Page = () =>{
+  const router = useRouter();
+  console.log(router);
+
+  return(
+    <div>
+      <h1>This is a index page for {router.query.user}</h1>
+      <button onClick={(e) => router.push('/user/${router.query.user}/settings')}>
+        Open Settings
+      </button>
+      <button onClick={(e) => router.push("/")}> Go to Home </button>
+      <div>
+  );
+};
+
+export default Page;
+
+o/p->
+
+This is an index page for Satwik Dubey
+
+<Open Settings> <Go to Home >
+---------------------------------------------------------------------------------------------------------------
+
+2nd way ->
+
+import {useRouter} from "next/router";
+
+const Page = () =>{
+  const router = useRouter();
+  console.log(router);
+
+  return(
+    <div>
+      <h1>This is a index page for {router.query.user}</h1>
+      <button onClick={(e) => router.push(
+          pathname:"/user/[user]/settings",
+          query:{user:router.query.user},
+      )}
+    }
+  >
+        Open Settings
+      </button>
+      <div>
+  );
+};
+
+export default Page;
+
+Note: agar hamlog push use karte ho to history create hoti rehti h aur agar hamlog ko history nhi banani h to ham reolace use karenge
+
+3rd way ->
+
+ <button onClick={(e) => router.replace("/")}> Go to Home </button>
+
+--------------------------------------------------------------------------------------
+
+Creating a reload button
+
+<button onClick={(e)=> router.reload()}>Reload</button>
+
+
+
+
+
+
+
