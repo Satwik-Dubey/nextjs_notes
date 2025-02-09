@@ -1,0 +1,52 @@
+Client-Side Rendering (CSR) vs. Server-Side Rendering (SSR)
+1. Client-Side Rendering (CSR)
+Rendering happens in the browser after JavaScript loads.
+Initial load is slower because the browser downloads, parses, and executes JavaScript before showing content.
+Faster subsequent page loads due to caching and state management.
+SEO is weaker because search engines may not index JavaScript-heavy content properly.
+Best for single-page applications (SPAs) and highly interactive web apps.
+
+
+2. Server-Side Rendering (SSR)
+Rendering happens on the server before sending fully built HTML to the browser.
+Initial load is faster since the user receives pre-rendered content.
+Each request requires a server response, which can slow down frequent interactions.
+Better for SEO, as search engines can crawl the fully rendered HTML easily.
+Ideal for blogs, e-commerce, and SEO-focused websites.
+
+pages/server/users.jsx
+
+const UserPage = ({ props }) => {
+    return (
+        <div>
+            <h1>Users (SSR)</h1>
+            <ul>
+                {props.users.map((user) => (
+                    <li key={user.id}>{user.firstName}</li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+export const getServerSideProps = async () => {
+    try {
+        const response = await fetch("https://dummy.com/users/00.json");
+        const data = await response.json();
+
+        return {
+            props: {
+                data,
+            },
+        };
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        return {
+            props: {
+                data: { users: [] }, // Fallback data
+            },
+        };
+    }
+};
+
+export default UserPage;
