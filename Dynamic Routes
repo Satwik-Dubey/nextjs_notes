@@ -1,0 +1,37 @@
+Dynamic Routes
+->agar ham kisi file ka name sq braket m kar de to fir vo dynamic roiutes bansakta h like [usernam].js
+eg: there is a file [name].js
+  
+code->
+  import {useRouter} from "next/router";
+  const DynamicPage=()=>{
+    const {query}=useRouter();
+    return(
+      <div>
+        <h1> This is  a {query.name} page</h1>
+      </div>
+      );
+  };
+export default DynamicPage;
+
+let's say i want this "user/satwik/settings"
+  
+folder  -> user/[user]/setting.js
+  code: setting.js
+    
+import {useRouter} from "next/router";
+const Page=()=>{
+  const router= useRouter();
+  console.log(router);
+  return (
+    <div>
+      <h1>This is setting page for {router.query.user}>/h1>
+    </div>
+  );
+};
+export default page;
+
+o/p-> This is setting for Satwik
+
+  explanation-> 
+  When you navigate to a URL like /user/satwik/settings, Next.js parses the URL, and the router.query.user value will be satwik.
