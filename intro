@@ -1,0 +1,23 @@
+NEXT JS
+
+-> Next js is fast than react
+
+SEO(Search Engine Optimization) 
+
+Setting up next js
+  
+-> npx create-next-app@latest
+
+Folder Structure->
+  -> jo bhi backened ka code hoga vo pages/api folder m jaayega
+
+  -> agar hamlog koi bhi file pages ke andar banyenge to vo route ban jaaega aur us file ke andar jo bhi component ko hamlog export karoge to vo _app.js ke component ke andar aa jayega
+
+Nested Routes
+  ->if there is any file named index.js then it route will be "/";
+  ->lets say there is a page called about.js then there is a route name "/about";
+  -> lets say mene pages ke andar ek folder banya called user and mene uske andar ek page satwik.js banaya then it will be "/usr/satwik";
+  -> lets say agar hum user pe jaaye aur vha pe mujhe kuch render karna h
+
+Dynamic Routes
+  
