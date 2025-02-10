@@ -1,0 +1,52 @@
+Setting up NextAuth with GitHub Provider
+Install NextAuth.js: Make sure you have next-auth installed in your project:
+
+
+npm i next-auth
+Create [...nextauth].js under pages/api/auth:
+
+This file will handle your authentication logic.
+
+
+// pages/api/auth/[...nextauth].js
+
+import NextAuth from "next-auth";
+import GitHubProvider from "next-auth/providers/github";
+
+const options = {
+  providers: [
+    GitHubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    }),
+    // You can add more providers here like Google, Facebook, etc.
+  ],
+};
+
+export default (req, res) => NextAuth(req, res, options);
+Replace process.env.GITHUB_CLIENT_ID and process.env.GITHUB_CLIENT_SECRET with your actual GitHub OAuth application credentials.
+
+Integrate with _app.js for session management:
+
+In your _app.js, wrap your main component with SessionProvider to provide session data to all pages:
+
+
+// pages/_app.js
+
+import { SessionProvider } from "next-auth/react";
+
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+  return (
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  );
+}
+
+export default MyApp;
+Here, SessionProvider ensures that the session information is available throughout your app.
+
+Notes:
+Ensure your GitHub OAuth application is set up correctly on GitHub Developer settings to get clientId and clientSecret.
+Replace placeholders like process.env.GITHUB_CLIENT_ID and process.env.GITHUB_CLIENT_SECRET with actual values from your environment variables or directly in the code if appropriate for your setup.
+Make sure to handle environment variables securely, especially clientSecret.
