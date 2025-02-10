@@ -1,0 +1,21 @@
+pages/index.jsx
+
+code:
+
+import codeImage from "address"
+
+1 way ->
+export default function Home(){
+  return (
+    <Image src={"/code.jpeg"} alt="Code Image" width={200} height={100} />
+
+  )
+}
+
+2nd way->
+export default function Home(){
+  return (
+    <Image src={"https://demoimage.com"} alt="Code Image" width={200} height={100} />
+
+  )
+}
